@@ -201,5 +201,5 @@ func getSummary(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid year must be between 1970 and " + string(now.Year())})
 	}
 
-	return proceedSummary(c, month+1, year)
+	return proceedSummary(c, month, year)
 }
