@@ -47,36 +47,33 @@ type RoomUsagePayload struct {
 
 func proceedSummary(c *fiber.Ctx, month int, year int) error {
 
-	//agent := fiber.Get(MASTER_PRICELIST_API)
-	//statusCode, masterResponsePayload, errs := agent.Bytes()
-	//
-	//if errs != nil {
-	//	log.Error("Error for with request", string(c.Request().RequestURI()), errs)
-	//	return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "we're sorry, something went wrong"})
-	//}
-	//
-	//if statusCode != 200 {
-	//	responseBody := string(masterResponsePayload)
-	//	log.Error("Error for with request", string(c.Request().RequestURI()), " Getting code, not 200", responseBody)
-	//	return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "we're sorry, something went wrong"})
-	//}
-	//
-	//agent = fiber.Get(BOOKING_API)
-	//statusCode, bookingResponsePayload, errs := agent.Bytes()
-	//
-	//if errs != nil {
-	//	log.Error("Error for with request", string(c.Request().RequestURI()), errs)
-	//	return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "we're sorry, something went wrong"})
-	//}
-	//
-	//if statusCode != 200 {
-	//	responseBody := string(bookingResponsePayload)
-	//	log.Error("Error for with request", string(c.Request().RequestURI()), " Getting code, not 200", responseBody)
-	//	return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "we're sorry, something went wrong"})
-	//}
+	agent := fiber.Get(MASTER_PRICELIST_API)
+	statusCode, masterResponsePayload, errs := agent.Bytes()
 
-	bookingResponsePayload := []byte("[{\"bookingDate\":\"2024-01-03T07:25:52.737Z\",\"officeName\":\"UID JAYA\",\"startTime\":\"2024-01-04T09:00:00.000Z\",\"endTime\":\"2024-01-04T16:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"},{\"name\":\"Snack Sore\"}],\"participants\":62,\"roomName\":\"Ruang Borobudur\",\"id\":\"1\"},{\"bookingDate\":\"2024-01-03T08:25:52.737Z\",\"officeName\":\"UID JAYA\",\"startTime\":\"2024-01-04T09:00:00.000Z\",\"endTime\":\"2024-01-04T14:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"}],\"participants\":42,\"roomName\":\"Ruang Prambanan\",\"id\":\"2\"},{\"bookingDate\":\"2024-01-03T08:25:52.737Z\",\"officeName\":\"UID JAYA\",\"startTime\":\"2024-01-04T09:00:00.000Z\",\"endTime\":\"2024-01-04T11:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"}],\"participants\":15,\"roomName\":\"Ruang Mendhut\",\"id\":\"3\"},{\"bookingDate\":\"2024-01-03T08:25:52.737Z\",\"officeName\":\"UID JAYA\",\"startTime\":\"2024-01-04T13:00:00.000Z\",\"endTime\":\"2024-01-04T16:00:00.000Z\",\"listConsumption\":[{\"name\":\"Makan Siang\"},{\"name\":\"Snack Sore\"}],\"participants\":27,\"roomName\":\"Ruang Mendhut\",\"id\":\"4\"},{\"bookingDate\":\"2024-01-06T08:25:52.737Z\",\"officeName\":\"UID JABAR\",\"startTime\":\"2024-01-08T13:00:00.000Z\",\"endTime\":\"2024-01-08T16:00:00.000Z\",\"listConsumption\":[{\"name\":\"Makan Siang\"},{\"name\":\"Snack Sore\"}],\"participants\":27,\"roomName\":\"Ruang Rinjani\",\"id\":\"5\"},{\"bookingDate\":\"2024-01-05T08:25:52.737Z\",\"officeName\":\"UID BALI\",\"startTime\":\"2024-01-07T09:00:00.000Z\",\"endTime\":\"2024-01-07T11:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"}],\"participants\":27,\"roomName\":\"Ruang Ganesha\",\"id\":\"6\"},{\"bookingDate\":\"2024-01-08T08:25:52.737Z\",\"officeName\":\"UID JAYA\",\"startTime\":\"2024-01-10T09:00:00.000Z\",\"endTime\":\"2024-01-10T16:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"},{\"name\":\"Snack Sore\"}],\"participants\":30,\"roomName\":\"Ruang Prambanan\",\"id\":\"7\"},{\"bookingDate\":\"2024-01-01T08:00:52.737Z\",\"officeName\":\"UID JATENG & DIY\",\"startTime\":\"2024-01-03T09:00:00.000Z\",\"endTime\":\"2024-01-03T14:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"}],\"participants\":35,\"roomName\":\"Ruang Arjuna\",\"id\":\"8\"},{\"bookingDate\":\"2024-01-05T09:25:52.737Z\",\"officeName\":\"UID JAYA\",\"startTime\":\"2024-01-06T14:00:00.000Z\",\"endTime\":\"2024-01-06T16:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Sore\"}],\"participants\":40,\"roomName\":\"Ruang Borobudur\",\"id\":\"9\"},{\"bookingDate\":\"2024-01-15T09:25:52.737Z\",\"officeName\":\"UID JAYA\",\"startTime\":\"2024-01-17T08:00:00.000Z\",\"endTime\":\"2024-01-17T11:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"}],\"participants\":40,\"roomName\":\"Ruang Borobudur\",\"id\":\"10\"},{\"bookingDate\":\"2024-01-02T08:30:52.737Z\",\"officeName\":\"UID JATIM\",\"startTime\":\"2024-01-05T08:00:00.000Z\",\"endTime\":\"2024-01-05T11:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"}],\"participants\":23,\"roomName\":\"Ruang Sudirman\",\"id\":\"11\"},{\"bookingDate\":\"2024-01-03T09:30:52.737Z\",\"officeName\":\"UID JATIM\",\"startTime\":\"2024-01-05T08:00:00.000Z\",\"endTime\":\"2024-01-05T11:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"}],\"participants\":30,\"roomName\":\"Ruang Fatmawati\",\"id\":\"12\"},{\"bookingDate\":\"2024-01-11T09:30:52.737Z\",\"officeName\":\"UID JATIM\",\"startTime\":\"2024-01-13T09:00:00.000Z\",\"endTime\":\"2024-01-13T16:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"},{\"name\":\"Snack Sore\"}],\"participants\":25,\"roomName\":\"Ruang Fatmawati\",\"id\":\"13\"},{\"bookingDate\":\"2024-01-15T09:30:52.737Z\",\"officeName\":\"UID JATIM\",\"startTime\":\"2024-01-18T09:00:00.000Z\",\"endTime\":\"2024-01-18T16:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"},{\"name\":\"Snack Sore\"}],\"participants\":23,\"roomName\":\"Ruang Sudirman\",\"id\":\"14\"},{\"bookingDate\":\"2024-01-04T09:30:52.737Z\",\"officeName\":\"UID JABAR\",\"startTime\":\"2024-01-07T09:00:00.000Z\",\"endTime\":\"2024-01-07T16:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"},{\"name\":\"Snack Sore\"}],\"participants\":23,\"roomName\":\"Ruang Galunggung\",\"id\":\"15\"},{\"bookingDate\":\"2024-01-04T10:30:52.737Z\",\"officeName\":\"UID JABAR\",\"startTime\":\"2024-01-08T09:00:00.000Z\",\"endTime\":\"2024-01-08T14:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"}],\"participants\":20,\"roomName\":\"Ruang Semeru\",\"id\":\"16\"},{\"bookingDate\":\"2024-01-04T10:30:52.737Z\",\"officeName\":\"UID JABAR\",\"startTime\":\"2024-01-08T15:00:00.000Z\",\"endTime\":\"2024-01-08T17:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Sore\"}],\"participants\":18,\"roomName\":\"Ruang Semeru\",\"id\":\"17\"},{\"bookingDate\":\"2024-01-10T08:30:52.737Z\",\"officeName\":\"UID JABAR\",\"startTime\":\"2024-01-13T15:00:00.000Z\",\"endTime\":\"2024-01-13T17:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Sore\"}],\"participants\":20,\"roomName\":\"Ruang Semeru\",\"id\":\"18\"},{\"bookingDate\":\"2024-01-15T08:30:52.737Z\",\"officeName\":\"UID JABAR\",\"startTime\":\"2024-01-17T09:00:00.000Z\",\"endTime\":\"2024-01-17T16:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"},{\"name\":\"Snack Sore\"}],\"participants\":20,\"roomName\":\"Ruang Bromo\",\"id\":\"19\"},{\"bookingDate\":\"2024-01-05T08:45:52.737Z\",\"officeName\":\"UID BALI\",\"startTime\":\"2024-01-08T09:00:00.000Z\",\"endTime\":\"2024-01-08T14:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"}],\"participants\":27,\"roomName\":\"Ruang Ganesha\",\"id\":\"20\"},{\"bookingDate\":\"2024-01-10T08:45:52.737Z\",\"officeName\":\"UID BALI\",\"startTime\":\"2024-01-12T09:00:00.000Z\",\"endTime\":\"2024-01-12T14:00:00.000Z\",\"listConsumption\":[{\"name\":\"Snack Siang\"},{\"name\":\"Makan Siang\"}],\"participants\":27,\"roomName\":\"Ruang Ganesha\",\"id\":\"21\"}]")
-	masterResponsePayload := []byte("[{\"createdAt\":\"2024-07-04T04:03:28.947Z\",\"name\":\"Snack Siang\",\"maxPrice\":20000,\"id\":\"1\"},{\"createdAt\":\"2024-07-04T10:04:22.946Z\",\"name\":\"Makan Siang\",\"maxPrice\":30000,\"id\":\"2\"},{\"createdAt\":\"2024-07-03T21:57:46.929Z\",\"name\":\"Snack Sore\",\"maxPrice\":20000,\"id\":\"3\"}]")
+	if errs != nil {
+		log.Error("Error for with request", string(c.Request().RequestURI()), errs)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "we're sorry, something went wrong"})
+	}
+
+	if statusCode != 200 {
+		responseBody := string(masterResponsePayload)
+		log.Error("Error for with request", string(c.Request().RequestURI()), " Getting code, not 200", responseBody)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "we're sorry, something went wrong"})
+	}
+
+	agent = fiber.Get(BOOKING_API)
+	statusCode, bookingResponsePayload, errs := agent.Bytes()
+
+	if errs != nil {
+		log.Error("Error for with request", string(c.Request().RequestURI()), errs)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "we're sorry, something went wrong"})
+	}
+
+	if statusCode != 200 {
+		responseBody := string(bookingResponsePayload)
+		log.Error("Error for with request", string(c.Request().RequestURI()), " Getting code, not 200", responseBody)
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "we're sorry, something went wrong"})
+	}
 
 	var bookings []BookingPayload
 
